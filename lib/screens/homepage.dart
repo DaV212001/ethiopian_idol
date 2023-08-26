@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:ethiopian_idol/networking/youtube_fetcher.dart';
 import 'package:ethiopian_idol/screens/categorieslistview.dart';
 import 'package:ethiopian_idol/screens/contestantdetails.dart';
+import 'package:ethiopian_idol/screens/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart' show Hero;
@@ -11,6 +12,7 @@ import 'package:googleapis/youtube/v3.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:ethiopian_idol/main.dart';
 import 'package:provider/provider.dart';
+import 'package:ethiopian_idol/screens/judgedetails.dart';
 
 
 
@@ -55,16 +57,33 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
 
 
+    final judgesList = [
+      Judge(
+        name: 'Simon Cowell',
+        imageUrl: 'https://th.bing.com/th/id/R.e73566984ba713375e3ac9da86517dbc?rik=M7G%2b8dSFuKwuBQ&pid=ImgRaw&r=0',
+        bio: 'Simon Cowell is a famous British record producer and TV personality who has judged shows like American Idol, The X Factor, and America\'s Got Talent.',
+      ),
+      Judge(
+        name: 'Heidi Klum',
+        imageUrl: 'https://th.bing.com/th/id/R.fb2c038a03d3618bc9f60742a7a3a2d3?rik=XckGbZRTkLanaw&pid=ImgRaw&r=0',
+        bio: 'Heidi Klum, (born June 1, 1973, Bergisch Gladbach, North Rhine–Westphalia, West Germany), German American supermodel, television personality, and businesswoman who hosted Germany’s Next Topmodel and Project Runway.',
+      ),
+      Judge(
+        name: 'Randy Jackson',
+        imageUrl: 'https://th.bing.com/th/id/OIP.UrfN8owoM2RBA-KvQY31WQHaOG?pid=ImgDet&rs=1',
+        bio: 'Randall Darius Jackson[1] (born June 23, 1956) is an American record executive, television presenter and musician, perhaps best known as a judge on American Idol from 2002 to 2013.',
+      ),
+    ];
 
 
 
     return Scaffold(
-      backgroundColor: themeProvider.selectedTheme == 'dark' ?Colors.black:Colors.white,
+      backgroundColor: themeProvider.selectedTheme == 'dark' ? Color(0xFF121212) :Colors.white,
       appBar: AppBar(
         systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: Colors.transparent,
             statusBarIconBrightness:themeProvider.selectedTheme == 'dark' ?Brightness.light: Brightness.dark),
-        backgroundColor: Colors.transparent,
+        backgroundColor: themeProvider.selectedTheme == 'dark' ? Color(0xFF121212) : Colors.transparent,
         elevation: 0,
         flexibleSpace: Padding(
           padding: EdgeInsets.only(top: 20),
@@ -74,16 +93,16 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 children: [
                   CircleAvatar(
-                      backgroundColor: themeProvider.selectedTheme == 'dark' ?Colors.black:Colors.white,
-                      radius: 40,
+                      backgroundColor: themeProvider.selectedTheme == 'dark' ? Color(0xFF121212) : Colors.black,
+                      radius: 15,
                       child:
-                      Image.asset('images/uselogo.png')),
+                      Image.asset('images/logouse.png')),
                   const SizedBox(width: 10),
                   Text(
                     'Ethiopian Idol',
                     style: TextStyle(
                         color:
-                        themeProvider.selectedTheme == 'dark' ?Colors.white:Colors.grey.shade800,
+                        themeProvider.selectedTheme == 'dark' ?Color(0xFFFFFD00):Colors.grey.shade800,
                         fontFamily:
                         'Poppins',
                         fontWeight:
@@ -93,9 +112,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
-              const CircleAvatar(
-                child: Text('U'),
-              ),
+              CircleAvatar(
+                  backgroundColor:Colors.transparent,
+                  radius: 15,
+                  child:
+                  Image.asset('images/ebc.png'),
+              )
             ],
           ),
         ),
@@ -111,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
           EdgeInsets.only(top: 20.0, left: 30, right: 30), child:
           Text('Popular', style:
           TextStyle(color:
-          themeProvider.selectedTheme == 'dark' ?Colors.white:Colors.grey.shade800, fontFamily:
+          themeProvider.selectedTheme == 'dark' ?Color(0xFFFFFD00):Colors.grey.shade800, fontFamily:
           'Poppins', fontWeight:
           FontWeight.w700, fontSize:
           25))),
@@ -132,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
               itemBuilder: (BuildContext context, int index, pageViewIndex) {
                 if (videosList == null) {
                   return Shimmer.fromColors(
-                    baseColor: Colors.blue.shade100,
+                    baseColor: Color(0xFFFFFD00),
                     highlightColor: Colors.blue[300]!,
                     child: Container(
                       width: double.infinity,
@@ -152,11 +174,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       );
                     },
-                    child : ClipRRect(borderRadius : BorderRadius.circular(8.0), child :
+                    child : ClipRRect(borderRadius : BorderRadius.circular(8.0),  child :
                     Image.network(videosList?[index].snippet?.thumbnails?.high?.url ?? 'default_image_url',
                         fit : BoxFit.cover,
                         errorBuilder : (BuildContext context, Object exception, StackTrace? stackTrace) {
-                          return Shimmer.fromColors(baseColor : Colors.blue.shade100, highlightColor : Colors.blue[300]!, child : Container(width : double.infinity, height : double.infinity, color : Colors.white,),);
+                          return Shimmer.fromColors(baseColor : Color(0xFFFFFD00), highlightColor : Colors.blue[300]!, child : Container(width : double.infinity, height : double.infinity, color : Colors.white,),);
                         }
                     )
                       ,
@@ -167,7 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
               itemCount : videosList?.length ?? 0
           )
           ),
-          Divider(indent: 80, endIndent: 80, thickness: 1, color: Colors.blue,),
+          Divider(indent: 80, endIndent: 80, thickness: 1, color: themeProvider.selectedTheme == 'dark' ? Color(0xFFFFFD00) : Colors.blue,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -175,7 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
               EdgeInsets.all(30), child :
               Text('Categories', style :
               TextStyle(color :
-              themeProvider.selectedTheme == 'dark' ?Colors.white:Colors.grey.shade800, fontFamily :
+              themeProvider.selectedTheme == 'dark' ?Color(0xFFFFFD00):Colors.grey.shade800, fontFamily :
               'Poppins', fontWeight :
               FontWeight.w700, fontSize :
               25))),
@@ -188,11 +210,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: 90,
                 decoration:
                 BoxDecoration(color: Colors.black.withOpacity(0.7), borderRadius:
-                BorderRadius.circular(20), border: Border.all(color: Colors.lightBlueAccent, width: 2.5)),
+                BorderRadius.circular(20), border: Border.all(color: Color(0xFFFFFD00), width: 2.5)),
                 padding:
                 EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child:
-                Center(child: Text('View All', style: TextStyle(color: Colors.lightBlueAccent),)),
+                Center(child: Text('View All', style: TextStyle(color: Color(0xFFFFFD00)),)),
                 ),)]
               ),
           SingleChildScrollView(
@@ -205,7 +227,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          Divider(indent: 80, endIndent: 80, color: Colors.blue, thickness: 1,),
+          Divider(indent: 80, endIndent: 80, color: themeProvider.selectedTheme == 'dark' ? Color(0xFFFFFD00) :Colors.blue, thickness: 1,),
           Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -213,7 +235,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 EdgeInsets.all(30), child :
                 Text('Most Voted', style :
                 TextStyle(color :
-                themeProvider.selectedTheme == 'dark' ?Colors.white:Colors.grey.shade800, fontFamily :
+                themeProvider.selectedTheme == 'dark' ?Color(0xFFFFFD00):Colors.grey.shade800, fontFamily :
                 'Poppins', fontWeight :
                 FontWeight.w700, fontSize :
                 25))),
@@ -224,17 +246,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: 90,
                   decoration:
                   BoxDecoration(color: Colors.black.withOpacity(0.7), borderRadius:
-                  BorderRadius.circular(20), border: Border.all(color: Colors.lightBlueAccent, width: 2.5)),
+                  BorderRadius.circular(20), border: Border.all(color: Color(0xFFFFFD00), width: 2.5)),
                   padding:
                   EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child:
-                  Center(child: Text('View All', style: TextStyle(color: Colors.lightBlueAccent),)),
+                  Center(child: Text('View All', style: TextStyle(color: Color(0xFFFFFD00)),)),
                 ),)]
           ),
           Padding(
             padding: EdgeInsets.only(bottom: 30),
               child: InfiniteScroll(videosList: videosList)),
-          Divider(indent: 80, endIndent: 80, color: Colors.blue, thickness: 1,),
+          Divider(indent: 80, endIndent: 80, color: themeProvider.selectedTheme == 'dark' ? Color(0xFFFFFD00) :Colors.blue, thickness: 1,),
           Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -242,7 +264,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 EdgeInsets.all(30), child :
                 Text('Funny', style :
                 TextStyle(color :
-                themeProvider.selectedTheme == 'dark' ?Colors.white:Colors.grey.shade800, fontFamily :
+                themeProvider.selectedTheme == 'dark' ? Color(0xFFFFFD00):Colors.grey.shade800, fontFamily :
                 'Poppins', fontWeight :
                 FontWeight.w700, fontSize :
                 25))),
@@ -253,17 +275,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: 90,
                   decoration:
                   BoxDecoration(color: Colors.black.withOpacity(0.7), borderRadius:
-                  BorderRadius.circular(20), border: Border.all(color: Colors.lightBlueAccent, width: 2.5)),
+                  BorderRadius.circular(20), border: Border.all(color: Color(0xFFFFFD00), width: 2.5)),
                   padding:
                   EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child:
-                  Center(child: Text('View All', style: TextStyle(color: Colors.lightBlueAccent),)),
+                  Center(child: Text('View All', style: TextStyle(color: Color(0xFFFFFD00)),)),
                 ),)]
           ),
           Padding(
               padding: EdgeInsets.only(bottom: 30),
               child: InfiniteScroll(videosList: videosList)),
-          Divider(indent: 80, endIndent: 80, color: Colors.blue, thickness: 1,),
+          Divider(indent: 80, endIndent: 80, color: themeProvider.selectedTheme == 'dark' ? Color(0xFFFFFD00) :Colors.blue, thickness: 1,),
           Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -271,7 +293,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 EdgeInsets.all(30), child :
                 Text('Random', style :
                 TextStyle(color :
-                themeProvider.selectedTheme == 'dark' ?Colors.white:Colors.grey.shade800, fontFamily :
+                themeProvider.selectedTheme == 'dark' ?Color(0xFFFFFD00):Colors.grey.shade800, fontFamily :
                 'Poppins', fontWeight :
                 FontWeight.w700, fontSize :
                 25))),
@@ -282,16 +304,85 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: 90,
                   decoration:
                   BoxDecoration(color: Colors.black.withOpacity(0.7), borderRadius:
-                  BorderRadius.circular(20), border: Border.all(color: Colors.lightBlueAccent, width: 2.5)),
+                  BorderRadius.circular(20), border: Border.all(color: Color(0xFFFFFD00), width: 2.5)),
                   padding:
                   EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child:
-                  Center(child: Text('View All', style: TextStyle(color: Colors.lightBlueAccent),)),
+                  Center(child: Text('View All', style: TextStyle(color: Color(0xFFFFFD00)),)),
                 ),)]
           ),
           Padding(
               padding: EdgeInsets.only(bottom: 30),
               child: InfiniteScroll(videosList: videosList)),
+          Divider(indent: 80, endIndent: 80, color: themeProvider.selectedTheme == 'dark' ? Color(0xFFFFFD00) :Colors.blue, thickness: 1,),
+          Padding(padding:
+          EdgeInsets.only(top: 20.0, left: 30, right: 30), child:
+          Text('Judges', style:
+          TextStyle(color:
+          themeProvider.selectedTheme == 'dark' ?Color(0xFFFFFD00):Colors.grey.shade800, fontFamily:
+          'Poppins', fontWeight:
+          FontWeight.w700, fontSize:
+          25))),
+          Container(
+              padding: EdgeInsets.only(top: 30, bottom: 50),
+              alignment: Alignment.center,
+              height: 350,
+              child: CarouselSlider.builder(
+                  options: CarouselOptions(
+                    height: 350,
+                    disableCenter: true,
+                    viewportFraction: 0.6,
+                    enlargeCenterPage: true,
+                    autoPlay: true,
+                  ),
+                  itemBuilder: (BuildContext context, int index, pageViewIndex) {
+                    if (judgesList == null) {
+                      return Shimmer.fromColors(
+                        baseColor: Color(0xFFFFFD00),
+                        highlightColor: Colors.blue[300]!,
+                        child: Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          color: Colors.white,
+                        ),
+                      );
+                    }
+                    return Container(
+                      padding: EdgeInsets.zero,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => JudgeDetailsPage(judge : judgesList![index]),
+                            ),
+                          );
+                        },
+                        child : ClipRRect(borderRadius : BorderRadius.circular(8.0), child :
+                        Image.network(judgesList?[index].imageUrl ?? 'default_image_url',
+                            fit : BoxFit.cover,
+                            errorBuilder : (BuildContext context, Object exception, StackTrace? stackTrace) {
+                              return Shimmer.fromColors(baseColor : Color(0xFFFFFD00), highlightColor : Colors.blue[300]!, child : Container(width : double.infinity, height : double.infinity, color : Colors.white,),);
+                            }
+                        )
+                        ),
+                      ),
+                    );
+                  },
+                  itemCount : judgesList?.length ?? 0
+              )
+          ),
+          Container(
+            margin: EdgeInsets.only(bottom: 10),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(color: Colors.transparent, borderRadius: BorderRadius.circular(20)),
+            child: Text('Powered by Micro Sun Technologies', style:
+            TextStyle(color:
+            themeProvider.selectedTheme == 'dark' ?Colors.yellow:Colors.black, fontFamily:
+            'Poppins', fontWeight:
+            FontWeight.w200, fontSize:
+            15)),
+          ),
         ]),
       ),
     );
@@ -342,7 +433,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
     bool _isLoading = true;
-
+    final themeProvider = Provider.of<ThemeProvider>(context);
 
 
     return Card(
@@ -360,7 +451,7 @@ class _MyHomePageState extends State<MyHomePage> {
             end: Alignment.bottomCenter,
             colors: [
               Colors.blue,
-              Colors.white,
+              themeProvider.selectedTheme=='dark'?Color(0xFF121212):Colors.white,
             ],
           )),
           width: 130,
@@ -392,7 +483,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         begin: Alignment.topCenter,
                                         end: Alignment.bottomCenter,
                                         colors: [
-                                          Colors.blue,
+                                          Color(0xFFFFFD00),
                                           Color(0xFFBCE0FB),
                                         ],
                                       )),
@@ -420,7 +511,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Row(mainAxisAlignment:
                             MainAxisAlignment.center, children:[
                               Icon(icon, size:
-                              16, color: Colors.blue,),
+                              16, color: Color(0xFFFFFD00),),
                               SizedBox(width :
                               5),
                               Text('$count', style: TextStyle(color: Colors.white),),
@@ -437,7 +528,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: EdgeInsets.only(top: 8),
                   child:
                   Text(title, style:
-                  TextStyle(fontFamily:
+                  TextStyle(color: themeProvider.selectedTheme=='dark'?Colors.white:Colors.black, fontFamily:
                   'Poppins', fontWeight:
                   FontWeight.w200),),
                 ),
@@ -563,3 +654,4 @@ class _InfiniteScrollState extends State<InfiniteScroll> {
     );
   }
 }
+

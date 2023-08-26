@@ -116,10 +116,11 @@ class CategoriesListState extends State<CategoriesList> {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
+      backgroundColor: themeProvider.selectedTheme=='dark'? Color(0xFF121212): Colors.white,
       appBar: AppBar(
-        backgroundColor: themeProvider.selectedTheme=='dark'?Colors.black:Colors.blue,
+        backgroundColor: themeProvider.selectedTheme == 'dark' ? Color(0xFF121212) : Colors.transparent,
         systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-        title: Text('Categories'),
+        title: Text('Categories', style: TextStyle(color: themeProvider.selectedTheme=='dark'?Colors.yellow:Colors.black),),
       ),
       body: categoryList.isEmpty
           ? Container(
@@ -129,7 +130,7 @@ class CategoriesListState extends State<CategoriesList> {
         ),
       )
           : Container(
-          color: themeProvider.selectedTheme=='dark'?Colors.black:Color(0xFFFFFFFF),
+          color: themeProvider.selectedTheme=='dark'?Color(0xFF121212):Color(0xFFFFFFFF),
           child: Column(
             children: [
               Expanded(
@@ -145,7 +146,7 @@ class CategoriesListState extends State<CategoriesList> {
                               return GestureDetector(
                                 onTap: () {},
                                 child: Container(
-                                  color: themeProvider.selectedTheme=='dark'?Colors.black:Color(0xFFFFFFFF),
+                                  color: themeProvider.selectedTheme=='dark'?Color(0xFF121212):Color(0xFFFFFFFF),
                                   child: Padding(
                                     padding:
                                     const EdgeInsets.only(
@@ -213,8 +214,8 @@ class CategoriesListState extends State<CategoriesList> {
                                                   ),
                                                   Row(
                                                     children: [
-                                                      Icon(Icons.person, color: themeProvider.selectedTheme=='dark'?Colors.white:Colors.black,),
-                                                      Text(categoryList[index]["num"].toString(), style: TextStyle(color: themeProvider.selectedTheme=='dark'?Colors.white:Colors.black),),
+                                                      Icon(Icons.person, color: themeProvider.selectedTheme=='dark'?Colors.yellow:Colors.black,),
+                                                      Text(categoryList[index]["num"].toString(), style: TextStyle(color: themeProvider.selectedTheme=='dark'?Colors.yellow:Colors.black),),
                                                     ],
                                                   ),
                                                 ],

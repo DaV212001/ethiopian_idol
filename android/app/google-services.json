@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "132926847633",
+    "project_id": "ethiopianidol",
+    "storage_bucket": "ethiopianidol.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132926847633:android:e5c9a35f1b4ff6d4019d30",
+        "android_client_info": {
+          "package_name": "com.example.ethiopian_idol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132926847633-o9k56tgktd8rbj7iivi4j5jcdt5kc8lu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChuy17u9PeU_wGEnrkQiFos_t6bWS1g5A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "132926847633-o9k56tgktd8rbj7iivi4j5jcdt5kc8lu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

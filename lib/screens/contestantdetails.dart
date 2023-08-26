@@ -1,8 +1,14 @@
+import 'package:ethiopian_idol/main.dart';
+import 'package:ethiopian_idol/screens/contestantdetails.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:googleapis/connectors/v1.dart';
 import 'package:googleapis/youtube/v3.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:hero_animation/hero_animation.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:ethiopian_idol/main.dart';
+import 'package:ethiopian_idol/screens/youtubeplayer.dart';
 
 class ContestantDetailsPage extends StatefulWidget {
   final PlaylistItem video;
@@ -129,20 +135,21 @@ class _ContestantDetailsPageState extends State<ContestantDetailsPage> {
                       ),
                       SizedBox(height : 16),
                       Center(
-                        child:ElevatedButton(onPressed :
-                        widget.video.snippet?.resourceId?.videoId == null
-                            ? null
-                            : () async {
-                          var videoId =
-                              widget.video.snippet?.resourceId?.videoId;
-                          var url =
-                              'https://www.youtube.com/watch?v=$videoId';
-                          if (await canLaunch(url)) {
-                            await launch(url);
-                          }
-                        },
-                          child:
-                          Text(widget.video.snippet?.resourceId?.videoId == null
+                        child: ElevatedButton(
+                          onPressed: widget.video.snippet?.resourceId?.videoId == null
+                              ? null
+                              : () async {
+                            var videoId = widget.video.snippet?.resourceId?.videoId;
+                            if (videoId != null) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => YoutubePlayerPage(videoId: videoId),
+                                ),
+                              );
+                            }
+                          },
+                          child: Text(widget.video.snippet?.resourceId?.videoId == null
                               ? 'Video Not Available'
                               : 'Watch Video'),
                         ),
