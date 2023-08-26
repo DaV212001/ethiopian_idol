@@ -151,14 +151,7 @@ class MyScreen extends StatefulWidget {
 
 class MyScreenState extends State<MyScreen> {
   int get profileScreenIndex =>
-      3; // index of ProfileScreen in pages list
-
-  void navigateToProfileScreen() {
-    setState(() {
-      currentIndex = profileScreenIndex;
-    });
-    print('FUNCTION HAS BEEN CALLED!NOTIFY DEVELOPER!I HAVE BEEN CALLED! MY VALUE IS $currentIndex');
-  }
+      3;
 
   @override
   void initState() {
@@ -261,8 +254,7 @@ class MyScreenState extends State<MyScreen> {
                     MaterialPageRoute(
                       builder:
                           (context) =>
-                          LoginScreen(onLogin:
-                          navigateToProfileScreen),
+                          LoginScreen(),
                     ),
                   );
                 } else {

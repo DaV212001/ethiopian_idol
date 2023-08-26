@@ -11,8 +11,7 @@ import 'package:ethiopian_idol/components/roundedbutton.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({required this.onLogin});
-  final VoidCallback onLogin;
+
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -179,7 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onTap:
                               () {
                             // Navigate to the RegisterScreen
-                            Navigator.push(context,MaterialPageRoute(builder:(context)=>RegisterScreen(onLogin: widget.onLogin),),);
+                            Navigator.push(context,MaterialPageRoute(builder:(context)=>RegisterScreen(),),);
                           },
                           // Add a text widget to display "Register" as a link
                           child:
@@ -202,8 +201,7 @@ class _LoginScreenState extends State<LoginScreen> {
 }
 
 class RegisterScreen extends StatefulWidget {
-  RegisterScreen({required this.onLogin});
-  final VoidCallback onLogin;
+
 
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
