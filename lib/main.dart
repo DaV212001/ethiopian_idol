@@ -8,19 +8,19 @@ import 'screens/voting.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'screens/profilescreen.dart';
-import 'package:flutter/material.dart' show Hero;
 import 'package:ethiopian_idol/networking/youtube_fetcher.dart';
 import 'package:provider/provider.dart';
 import 'components/categorymodel.dart';
 import 'screens/compete.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:chapa_unofficial/chapa_unofficial.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
+  Chapa.configure(privateKey: "CHASECK_TEST-QlVxOwMIyNJCuIipknSMvWfTWJ0pm2K4");
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent,
-  ));
+
   runApp(MyApp());
 }
 
@@ -272,19 +272,37 @@ class MyScreenState extends State<MyScreen> {
   }
 }
 
+
+
+
 class ThemeProvider extends ChangeNotifier {
-  final ValueNotifier<String?> _selectedThemeNotifier =
-  ValueNotifier(null);
+  String _selectedTheme = 'light';
+  final ValueNotifier<String?> selectedThemeNotifier = ValueNotifier(null);
 
-  ValueNotifier<String?> get selectedThemeNotifier =>
-      _selectedThemeNotifier;
+  ThemeProvider() {
+    // Load the selected theme from SharedPreferences when the ThemeProvider is created
+    _loadSelectedTheme();
+  }
 
-  String? get selectedTheme => _selectedThemeNotifier.value;
+  String get selectedTheme => _selectedTheme;
 
-  void setSelectedTheme(String? value) {
-    if (_selectedThemeNotifier.value != value) {
-      _selectedThemeNotifier.value = value;
-      notifyListeners();
-    }
+  void setSelectedTheme(String value) {
+    _selectedTheme = value;
+    notifyListeners();
+    selectedThemeNotifier.value = value;
+
+    // Save the selected theme to SharedPreferences when it is changed
+    _saveSelectedTheme();
+  }
+
+  Future<void> _loadSelectedTheme() async {
+    final prefs = await SharedPreferences.getInstance();
+    final theme = prefs.getString('selectedTheme') ?? 'light';
+    setSelectedTheme(theme);
+  }
+
+  Future<void> _saveSelectedTheme() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('selectedTheme', _selectedTheme);
   }
 }

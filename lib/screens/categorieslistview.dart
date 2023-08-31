@@ -1,7 +1,7 @@
+import 'package:ethiopian_idol/screens/inputdetail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:ethiopian_idol/screens/homepage.dart';
 import 'package:ethiopian_idol/main.dart';
 import 'package:provider/provider.dart';
 
@@ -144,7 +144,15 @@ class CategoriesListState extends State<CategoriesList> {
                             itemBuilder:
                                 (BuildContext context, int index) {
                               return GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          DetailsEntryScreen(category: categoryList[index] ['name']),
+                                    ),
+                                  );
+                                },
                                 child: Container(
                                   color: themeProvider.selectedTheme=='dark'?Color(0xFF121212):Color(0xFFFFFFFF),
                                   child: Padding(

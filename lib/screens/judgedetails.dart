@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ethiopian_idol/main.dart';
+import 'package:provider/provider.dart';
 
 class Judge {
   final String name;
@@ -23,78 +24,41 @@ class JudgeDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
-
-        body: Stack(
-          children: [
-            SingleChildScrollView(
-              child:
-              Padding(
-                padding: EdgeInsets.zero,
-                child:Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image.network(judge.imageUrl),
-                    Text(
-                        'About',
-                        style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w700, fontSize: 25)
-                    ),
-                    SizedBox(height: 8.0),
-                    Text(judge.bio, style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w200, fontSize: 15),),
-                  ],
-                ),
+      backgroundColor: themeProvider.selectedTheme=='dark'? Color(0xFF121212):Colors.white,
+      appBar: AppBar(
+        backgroundColor: themeProvider.selectedTheme=='dark'? Color(0xFF121212):Colors.yellow,
+        title: Text(judge.name),
+        leading: IconButton(
+          icon: Icon(Icons.chevron_left),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.zero,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.network(judge.imageUrl),
+              Text(
+                'About',
+                style:
+                TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w700, fontSize: 25),
               ),
-
-            ),
-
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(color: Colors.white.withOpacity(0.2), shape: BoxShape.circle),
-
-                        child: IconButton(
-
-                          iconSize: 50,
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: Icon(Icons.chevron_left),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 6,
-                      child: Center(
-                        child: Container(
-                          decoration: BoxDecoration(color: Colors.white.withOpacity(0.2), borderRadius: BorderRadius.circular(10)),
-
-                          child: Center(
-                            child: Text(
-                              judge.name,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 25
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-
-              ],
-            ),
-          ],
-        )
-
+              SizedBox(height: 8.0),
+              Text(
+                judge.bio,
+                style:
+                TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w200, fontSize: 15),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

@@ -2,7 +2,6 @@ import 'dart:math';
 import 'package:ethiopian_idol/networking/youtube_fetcher.dart';
 import 'package:ethiopian_idol/screens/categorieslistview.dart';
 import 'package:ethiopian_idol/screens/contestantdetails.dart';
-import 'package:ethiopian_idol/screens/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart' show Hero;
@@ -59,19 +58,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final judgesList = [
       Judge(
-        name: 'Simon Cowell',
-        imageUrl: 'https://th.bing.com/th/id/R.e73566984ba713375e3ac9da86517dbc?rik=M7G%2b8dSFuKwuBQ&pid=ImgRaw&r=0',
-        bio: 'Simon Cowell is a famous British record producer and TV personality who has judged shows like American Idol, The X Factor, and America\'s Got Talent.',
+        name: 'Sertse Feresehbhat',
+        imageUrl: 'https://th.bing.com/th/id/R.6f9471dbe4756649719dad6a9daf1a18?rik=EuUvQRLfQi8tpQ&pid=ImgRaw&r=0',
+        bio: 'Sertse Feresebehat is a 36-year old musician who was appointed as Deputy CEO of the Ethiopian Tourism Organization (ETO) by the Prime Minister on June 14, 20181. He replaced Yechale Mihret (PhD) and will also be serving as the Acting CEO of the Tourism Organization until a new head is assigned1. Sertse was born in Debrelibanos, a monastery just north of Addis Abeba, and obtained his bachelor’s degree in Musical Art from Addis Abeba University’s Yared School of Music1. He has previously served as the Vice President of the Ethiopian Musicians Association and was a judge in the television show, Ethiopian Idol1. He is also one of the founding members of the ‘Retrieve Ethio Big Band’ with Feleke Hailu, another notable musician. There are also some interviews with him on YouTube, such as an interview with Dejaf TV2 and a video by Bisrat News',
       ),
       Judge(
-        name: 'Heidi Klum',
-        imageUrl: 'https://th.bing.com/th/id/R.fb2c038a03d3618bc9f60742a7a3a2d3?rik=XckGbZRTkLanaw&pid=ImgRaw&r=0',
-        bio: 'Heidi Klum, (born June 1, 1973, Bergisch Gladbach, North Rhine–Westphalia, West Germany), German American supermodel, television personality, and businesswoman who hosted Germany’s Next Topmodel and Project Runway.',
+        name: 'Nebeyu Baye',
+        imageUrl: 'https://th.bing.com/th/id/R.70259318d0d485226d7c5c5ce57b7771?rik=zKucwi97gTZxwg&pid=ImgRaw&r=0',
+        bio: 'Nebiyu Baye is an Assistant Professor and a poet. He has given a message at a book graduation and recited poetry. He has also recited a poem called “Addis Alem” at the “Wisdom to Live” forum in Addis Ababa on February 2, 2010',
       ),
       Judge(
-        name: 'Randy Jackson',
-        imageUrl: 'https://th.bing.com/th/id/OIP.UrfN8owoM2RBA-KvQY31WQHaOG?pid=ImgDet&rs=1',
-        bio: 'Randall Darius Jackson[1] (born June 23, 1956) is an American record executive, television presenter and musician, perhaps best known as a judge on American Idol from 2002 to 2013.',
+        name: 'Serawit Fekre',
+        imageUrl: 'https://yageru.com/images/artists/a309.jpg',
+        bio: 'Serawit Fikre is an Ethiopian film actor and director. He was born in the capital city Addis Ababa in 1970 and started his education at Kebena primary and secondary school12. He has directed many films such as “Semayawiw Feres” and “Hiroshima”. He is best known for his soap advertisement with Mulalem Tadese.',
       ),
     ];
 
@@ -80,45 +79,43 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: themeProvider.selectedTheme == 'dark' ? Color(0xFF121212) :Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
+            statusBarColor: themeProvider.selectedTheme == 'dark' ? Color(0xFF121212) :Colors.yellow,
             statusBarIconBrightness:themeProvider.selectedTheme == 'dark' ?Brightness.light: Brightness.dark),
-        backgroundColor: themeProvider.selectedTheme == 'dark' ? Color(0xFF121212) : Colors.transparent,
+        backgroundColor: themeProvider.selectedTheme == 'dark' ? Color(0xFF121212) : Colors.yellow,
         elevation: 0,
-        flexibleSpace: Padding(
-          padding: EdgeInsets.only(top: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  CircleAvatar(
-                      backgroundColor: themeProvider.selectedTheme == 'dark' ? Color(0xFF121212) : Colors.black,
-                      radius: 15,
-                      child:
-                      Image.asset('images/logouse.png')),
-                  const SizedBox(width: 10),
-                  Text(
-                    'Ethiopian Idol',
-                    style: TextStyle(
-                        color:
-                        themeProvider.selectedTheme == 'dark' ?Color(0xFFFFFD00):Colors.grey.shade800,
-                        fontFamily:
-                        'Poppins',
-                        fontWeight:
-                        FontWeight.w700,
-                        fontSize:
-                        20),
-                  ),
-                ],
-              ),
-              CircleAvatar(
-                  backgroundColor:Colors.transparent,
-                  radius: 15,
-                  child:
-                  Image.asset('images/ebc.png'),
-              )
-            ],
+        flexibleSpace: Center(
+          child: Padding(
+            padding: EdgeInsets.only(top: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CircleAvatar(
+                    backgroundColor: themeProvider.selectedTheme == 'dark' ? Color(0xFF121212) : Colors.black,
+                    radius: 15,
+                    child:
+                    Image.asset('images/logouse.png')),
+                Text(
+                  'Ethiopian Idol',
+                  style: TextStyle(
+                      color:
+                      themeProvider.selectedTheme == 'dark' ?Color(0xFFFFFD00):Colors.grey.shade800,
+                      fontFamily:
+                      'Poppins',
+                      fontWeight:
+                      FontWeight.w700,
+                      fontSize:
+                      20),
+                ),
+                CircleAvatar(
+                    backgroundColor:Colors.transparent,
+                    radius: 15,
+                    child:
+                    Image.asset('images/ebc.png'),
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -210,11 +207,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: 90,
                 decoration:
                 BoxDecoration(color: Colors.black.withOpacity(0.7), borderRadius:
-                BorderRadius.circular(20), border: Border.all(color: Color(0xFFFFFD00), width: 2.5)),
+                BorderRadius.circular(20), border: Border.all(color: Colors.white, width: 2.5)),
                 padding:
                 EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child:
-                Center(child: Text('View All', style: TextStyle(color: Color(0xFFFFFD00)),)),
+                Center(child: Text('View All', style: TextStyle(color: Colors.white),)),
                 ),)]
               ),
           SingleChildScrollView(
@@ -246,11 +243,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: 90,
                   decoration:
                   BoxDecoration(color: Colors.black.withOpacity(0.7), borderRadius:
-                  BorderRadius.circular(20), border: Border.all(color: Color(0xFFFFFD00), width: 2.5)),
+                  BorderRadius.circular(20), border: Border.all(color: Colors.white, width: 2.5)),
                   padding:
                   EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child:
-                  Center(child: Text('View All', style: TextStyle(color: Color(0xFFFFFD00)),)),
+                  Center(child: Text('View All', style: TextStyle(color: Colors.white),)),
                 ),)]
           ),
           Padding(
@@ -275,11 +272,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: 90,
                   decoration:
                   BoxDecoration(color: Colors.black.withOpacity(0.7), borderRadius:
-                  BorderRadius.circular(20), border: Border.all(color: Color(0xFFFFFD00), width: 2.5)),
+                  BorderRadius.circular(20), border: Border.all(color: Colors.white, width: 2.5)),
                   padding:
                   EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child:
-                  Center(child: Text('View All', style: TextStyle(color: Color(0xFFFFFD00)),)),
+                  Center(child: Text('View All', style: TextStyle(color: Colors.white),)),
                 ),)]
           ),
           Padding(
@@ -304,11 +301,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: 90,
                   decoration:
                   BoxDecoration(color: Colors.black.withOpacity(0.7), borderRadius:
-                  BorderRadius.circular(20), border: Border.all(color: Color(0xFFFFFD00), width: 2.5)),
+                  BorderRadius.circular(20), border: Border.all(color:Colors.white, width: 2.5)),
                   padding:
                   EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child:
-                  Center(child: Text('View All', style: TextStyle(color: Color(0xFFFFFD00)),)),
+                  Center(child: Text('View All', style: TextStyle(color: Colors.white),)),
                 ),)]
           ),
           Padding(
@@ -616,6 +613,7 @@ class _InfiniteScrollState extends State<InfiniteScroll> {
       });
     }
   }
+
   Future<List<PlaylistItem>?> _getVideosList() async {
     return widget.videosList;
   }
@@ -632,8 +630,18 @@ class _InfiniteScrollState extends State<InfiniteScroll> {
             child: Row(
               children: List.generate(
                 min(_currentItemCount, widget.videosList!.length),
-                    (index) => ThumbnailCard(
-                  imageUrl: widget.videosList?[index].snippet?.thumbnails?.high?.url,
+                    (index) => GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ContestantDetailsPage(video: widget.videosList![index]),
+                      ),
+                    );
+                  },
+                  child: ThumbnailCard(
+                    imageUrl: widget.videosList?[index].snippet?.thumbnails?.high?.url,
+                  ),
                 ),
               ),
             ),
@@ -648,10 +656,8 @@ class _InfiniteScrollState extends State<InfiniteScroll> {
               color: Colors.white,
             ),
           );
-
         }
       },
     );
   }
 }
-

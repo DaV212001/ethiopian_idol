@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ethiopian_idol/main.dart';
-import 'package:ethiopian_idol/screens/loginandregistration.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,9 +18,9 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   late final VoidCallback navigateToProfileScreen;
 
-  String firstName = 'Name';
-  String status = 'Audience';
-  String phoneNumber = '';
+  String firstName = 'loading...';
+  String status = 'loading...';
+  String phoneNumber = 'loading...';
   double walletBalance = 0;
 
   @override
@@ -76,6 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       },
       // change the text and icon of the first item based on whether there is a user currently logged in
       {'text': 'Change password', 'icon': Icons.vpn_key},
+      {'text': 'Change theme' , 'icon' : Icons.palette},
       {'text': 'Fill Wallet', 'icon': Icons.wallet},
       {'text': 'Change language', 'icon': Icons.language},
       {'text': 'Invite friends', 'icon': Icons.person_add},
@@ -93,9 +93,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         automaticallyImplyLeading: false,
         elevation: 0,
         systemOverlayStyle:
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent, statusBarIconBrightness: themeProvider.selectedTheme=='dark'? Brightness.light: Brightness.dark),
+        SystemUiOverlayStyle(statusBarColor: themeProvider.selectedTheme == 'dark' ? Color(0xFF121212) :Colors.yellow, statusBarIconBrightness: themeProvider.selectedTheme=='dark'? Brightness.light: Brightness.dark),
         title: Center(child: Text('Profile', style: TextStyle(color: themeProvider.selectedTheme=='dark'?Colors.white: Colors.black, fontFamily: 'Poppins', fontWeight: FontWeight.w700),)),
-        backgroundColor: themeProvider.selectedTheme == 'dark' ? Color(0xFF121212) : Color(0xFFF3F4F6),
+        backgroundColor: themeProvider.selectedTheme == 'dark' ? Color(0xFF121212) : Colors.yellow,
       ),
       body: Column(
         children: [
@@ -252,7 +252,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Navigator.push(context, MaterialPageRoute(builder:(context)=>ChapaWalletFillerScreen())).then((value) => _getWalletBalance());
                               },
                             ),
-                            Container(child :Text('Wallet Balance : $walletBalance ETB'))
+                            Container(child :Text('Wallet Balance : $walletBalance ETB', style: TextStyle(color: themeProvider.selectedTheme=='dark'?Colors.white:Colors.black),))
                           ]
                       );
                     } else {
