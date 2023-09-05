@@ -17,7 +17,7 @@ import 'package:chapa_unofficial/chapa_unofficial.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
-  Chapa.configure(privateKey: "CHASECK_TEST-QlVxOwMIyNJCuIipknSMvWfTWJ0pm2K4");
+  Chapa.configure(privateKey: "CHASECK-jRhJcBNbObvKc2KvxAqStPdAbpYUYVaZ");
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 

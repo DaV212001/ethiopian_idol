@@ -1,16 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ethiopian_idol/components/categorymodel.dart';
-import 'package:ethiopian_idol/screens/votingspecific.dart';
+import 'package:ethiopian_idol/components/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:ethiopian_idol/components/showcard.dart';
 import 'package:flutter/services.dart';
 import 'package:ethiopian_idol/main.dart';
 import 'package:provider/provider.dart';
-import 'package:ethiopian_idol/components/footer.dart';
-
-
-
-
 final List<Map<String, dynamic>> people = [
   {
     'name': 'Getachew Gerem',
@@ -115,19 +110,19 @@ final List<Map<String, dynamic>> people = [
 
 String cate = "Singing";
 
-class Voting extends StatefulWidget {
-  const Voting({Key? key}) : super(key: key);
-
-  static _VotingState? of(BuildContext context) =>
-      context.findAncestorStateOfType<_VotingState>();
+class Votingspecific extends StatefulWidget {
+  const Votingspecific({required this.name}) ;
+ final String name;
+  static _VotingspecificState? of(BuildContext context) =>
+      context.findAncestorStateOfType<_VotingspecificState>();
 
   @override
-  State<Voting> createState() => _VotingState();
+  State<Votingspecific> createState() => _VotingspecificState();
 }
 
 double walletBalance = 0;
 
-class _VotingState extends State<Voting> {
+class _VotingspecificState extends State<Votingspecific> {
   String? selectedCategory = "Music";
 
   Future<Map<String, int>> fetchVoteCounts() async {
@@ -215,7 +210,7 @@ class _VotingState extends State<Voting> {
                 flex: 2,
                 child: Center(
                   child: Text(
-                    "Vote",
+                    widget.name,
                     style: TextStyle(
                       color: themeProvider.selectedTheme == "dark"
                           ? Colors.white
@@ -236,35 +231,7 @@ class _VotingState extends State<Voting> {
           : Colors.white,
       body: Column(
         children: [
-          Padding(
-            padding: EdgeInsets.only(top: 2),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(top: 5, right: 5, bottom: 5),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: themeProvider.selectedTheme == "dark"
-                          ? Color(0xFFFFFD00)
-                          : Colors.yellow,
-                    ),
-                    child: Icon(
-                      Icons.candlestick_chart_rounded,
-                      size: 40,
-                      color: themeProvider.selectedTheme == "dark"
-                          ? Colors.black
-                          : Colors.black,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 5,
-                  child: CategoryScrollable(themeProvider: themeProvider),
-                ),
-              ],
-            ),
-          ),
+
           Expanded(
             child: Padding(
               padding: EdgeInsets.only(left: 3, right: 3, top: 10),
@@ -278,27 +245,27 @@ class _VotingState extends State<Voting> {
                         itemCount: (people.length / 2).ceil() + 1,
                         itemBuilder: (context, index) {
                           if (index == (people.length / 2).ceil()) {
-                            return FooterCustom(themeProvider: themeProvider,);
+                            return FooterCustom(themeProvider: themeProvider);
                           } else {
                             return Padding(
                               padding: EdgeInsets.only(bottom: 30),
                               child: Row(
                                 children: [0, 1].map((i) => Expanded(
                                   child: ShowCard(
-                                    height: 150,
-                                    width: double.infinity,
-                                    link: people[index * 2 + i]['image'] ??
-                                        '',
-                                    isVotecard: true,
-                                    category: cate,
-                                    name:
-                                    people[index * 2 + i]['name'] ?? '',
-                                    votes:
-                                    people[index * 2 + i]['votes'] ?? 0,
-                                    description: people[index * 2 + i]
-                                    ['description'] ??
-                                        '',
-                                    video:  people[index * 2 + i]['video'] ?? ''
+                                      height: 150,
+                                      width: double.infinity,
+                                      link: people[index * 2 + i]['image'] ??
+                                          '',
+                                      isVotecard: true,
+                                      category: cate,
+                                      name:
+                                      people[index * 2 + i]['name'] ?? '',
+                                      votes:
+                                      people[index * 2 + i]['votes'] ?? 0,
+                                      description: people[index * 2 + i]
+                                      ['description'] ??
+                                          '',
+                                      video:  people[index * 2 + i]['video'] ?? ''
                                   ),
                                 )).toList(),
                               ),
@@ -348,7 +315,9 @@ class CategoryScrollable extends StatelessWidget {
       categories.map((category) =>
           InkWell(onTap:
               () {
-            Navigator.push(context, MaterialPageRoute(builder: (context){return Votingspecific(name: category['text'] as String);}));
+            Provider.of<CategoryModel>(context,
+                listen:
+                false).selectCategory(category['text'] as String);
           }, child:
           Container(margin:
           EdgeInsets.all(5), decoration:

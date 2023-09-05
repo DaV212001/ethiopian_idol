@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:ethiopian_idol/components/footer.dart';
 import 'package:ethiopian_idol/networking/youtube_fetcher.dart';
 import 'package:ethiopian_idol/screens/categorieslistview.dart';
 import 'package:ethiopian_idol/screens/contestantdetails.dart';
@@ -12,6 +13,8 @@ import 'package:shimmer/shimmer.dart';
 import 'package:ethiopian_idol/main.dart';
 import 'package:provider/provider.dart';
 import 'package:ethiopian_idol/screens/judgedetails.dart';
+import 'package:ethiopian_idol/screens/votingspecific.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 
@@ -71,6 +74,11 @@ class _MyHomePageState extends State<MyHomePage> {
         name: 'Serawit Fekre',
         imageUrl: 'https://yageru.com/images/artists/a309.jpg',
         bio: 'Serawit Fikre is an Ethiopian film actor and director. He was born in the capital city Addis Ababa in 1970 and started his education at Kebena primary and secondary school12. He has directed many films such as “Semayawiw Feres” and “Hiroshima”. He is best known for his soap advertisement with Mulalem Tadese.',
+      ),
+      Judge(
+        name: 'Zinash Olani',
+        imageUrl: 'https://i.postimg.cc/LXPcD74T/Screenshot-123.png',
+        bio: 'Zinash Olani is an Ethiopian Idol judge',
       ),
     ];
 
@@ -237,6 +245,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 FontWeight.w700, fontSize :
                 25))),
                 TextButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context){return Votingspecific(name: 'Most Voted');}));
+
                 }, child:
                 Container(
                   height: 40,
@@ -266,6 +276,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 FontWeight.w700, fontSize :
                 25))),
                 TextButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context){return Votingspecific(name: 'Funny');}));
                 }, child:
                 Container(
                   height: 40,
@@ -295,6 +306,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 FontWeight.w700, fontSize :
                 25))),
                 TextButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context){return Votingspecific(name: 'Random');}));
                 }, child:
                 Container(
                   height: 40,
@@ -314,12 +326,14 @@ class _MyHomePageState extends State<MyHomePage> {
           Divider(indent: 80, endIndent: 80, color: themeProvider.selectedTheme == 'dark' ? Color(0xFFFFFD00) :Colors.blue, thickness: 1,),
           Padding(padding:
           EdgeInsets.only(top: 20.0, left: 30, right: 30), child:
-          Text('Judges', style:
-          TextStyle(color:
-          themeProvider.selectedTheme == 'dark' ?Color(0xFFFFFD00):Colors.grey.shade800, fontFamily:
-          'Poppins', fontWeight:
-          FontWeight.w700, fontSize:
-          25))),
+          Center(
+            child: Text('Judges', style:
+            TextStyle(color:
+            themeProvider.selectedTheme == 'dark' ?Color(0xFFFFFD00):Colors.grey.shade800, fontFamily:
+            'Poppins', fontWeight:
+            FontWeight.w700, fontSize:
+            25)),
+          )),
           Container(
               padding: EdgeInsets.only(top: 30, bottom: 50),
               alignment: Alignment.center,
@@ -369,18 +383,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   itemCount : judgesList?.length ?? 0
               )
           ),
-          Container(
-            margin: EdgeInsets.only(bottom: 10),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(color: Colors.transparent, borderRadius: BorderRadius.circular(20)),
-            child: Text('Powered by Micro Sun Technologies', style:
-            TextStyle(color:
-            themeProvider.selectedTheme == 'dark' ?Colors.yellow:Colors.black, fontFamily:
-            'Poppins', fontWeight:
-            FontWeight.w200, fontSize:
-            15)),
-          ),
-        ]),
+    FooterCustom(themeProvider: themeProvider)
+    ]),
       ),
     );
   }
@@ -539,6 +543,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ;
   }
 }
+
 
 class ThumbnailCard extends StatelessWidget {
   final String? imageUrl;

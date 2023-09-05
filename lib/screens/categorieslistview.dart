@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:ethiopian_idol/main.dart';
 import 'package:provider/provider.dart';
+import 'package:ethiopian_idol/screens/votingspecific.dart';
 
 
 class CategoriesList extends StatefulWidget {
@@ -118,8 +119,8 @@ class CategoriesListState extends State<CategoriesList> {
     return Scaffold(
       backgroundColor: themeProvider.selectedTheme=='dark'? Color(0xFF121212): Colors.white,
       appBar: AppBar(
-        backgroundColor: themeProvider.selectedTheme == 'dark' ? Color(0xFF121212) : Colors.transparent,
-        systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+        backgroundColor: themeProvider.selectedTheme == 'dark' ? Color(0xFF121212) : Colors.yellow,
+        systemOverlayStyle: SystemUiOverlayStyle(systemStatusBarContrastEnforced: true,statusBarColor: themeProvider.selectedTheme == 'dark' ? Color(0xFF121212) : Colors.yellow),
         title: Text('Categories', style: TextStyle(color: themeProvider.selectedTheme=='dark'?Colors.yellow:Colors.black),),
       ),
       body: categoryList.isEmpty
@@ -149,7 +150,7 @@ class CategoriesListState extends State<CategoriesList> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          DetailsEntryScreen(category: categoryList[index] ['name']),
+                                          Votingspecific(name: categoryList[index] ['name']),
                                     ),
                                   );
                                 },

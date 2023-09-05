@@ -501,9 +501,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   .set({
                                 'firstName': _firstNameController.text,
                                 'lastName': _lastNameController.text,
-                                'status':
-                                    isContestant ? 'Contestant' : 'Audience',
-                                if (isContestant)
+                                'status': isContestant ? 'Contestant' : 'Audience',
                                   'phoneNumber': _phoneNumberController.text,
                               });
 

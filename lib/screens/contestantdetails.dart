@@ -132,201 +132,205 @@ class _ContestantDetailsPageState extends State<ContestantDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.center,
-            end: Alignment.topCenter,
-            colors: [
-              Colors.transparent,
-              Colors.white,
-            ],
-          ),
-        ),
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                // replace the image with the youtube player
-                YoutubePlayer(
-                  controller: _controller,
-                  showVideoProgressIndicator: true,
-                  progressIndicatorColor: Colors.amber,
-                  progressColors: ProgressBarColors(
-                    playedColor: Colors.amber,
-                    handleColor: Colors.amberAccent,
-                  ),
-                ),
-                Positioned(
-                  top: MediaQuery.of(context).size.height / 2,
-                  left: 0,
-                  right: 0,
-                  child: AppBar(
-                    elevation: 0,
-                    backgroundColor: Colors.transparent,
-                  ),
-                ),
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.center,
+              end: Alignment.topCenter,
+              colors: [
+                Colors.transparent,
+                Colors.white,
               ],
             ),
-            Expanded(
-              child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin:
-                        EdgeInsets.symmetric(horizontal : 16, vertical : 8),
-                        child : Stack(
-                          children:[
-                            Positioned.fill(
-                              child : Container(
-                                decoration : BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    gradient : LinearGradient(
-                                        begin : Alignment.bottomCenter,
-                                        end : Alignment.topCenter,
-                                        colors : [
-                                          Colors.white,
-                                          Colors.blue,
-                                        ]
-                                    )
+          ),
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  // replace the image with the youtube player
+                  YoutubePlayer(
+                    controller: _controller,
+                    showVideoProgressIndicator: true,
+                    progressIndicatorColor: Colors.amber,
+                    progressColors: ProgressBarColors(
+                      playedColor: Colors.amber,
+                      handleColor: Colors.amberAccent,
+                    ),
+                  ),
+                  Positioned(
+                    top: MediaQuery.of(context).size.height / 2,
+                    left: 0,
+                    right: 0,
+                    child: AppBar(
+                      elevation: 0,
+                      backgroundColor: Colors.transparent,
+                    ),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin:
+                          EdgeInsets.symmetric(horizontal : 16, vertical : 8),
+                          child : Stack(
+                            children:[
+                              Positioned.fill(
+                                child : Container(
+                                  decoration : BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      gradient : LinearGradient(
+                                          begin : Alignment.bottomCenter,
+                                          end : Alignment.topCenter,
+                                          colors : [
+                                            Colors.white,
+                                            Colors.blue,
+                                          ]
+                                      )
+                                  ),
                                 ),
                               ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children:[
-                                Card(
-                                  shape:
-                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  child: Image.network(
-                                    widget.video.snippet!.thumbnails!.default_!.url!,
-                                    width: 100,
-                                    height: 150,
-                                    fit: BoxFit.cover,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children:[
+                                  Card(
+                                    shape:
+                                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    child: Image.network(
+                                      widget.video.snippet!.thumbnails!.default_!.url!,
+                                      width: 100,
+                                      height: 150,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(width : 8),
-                                Flexible(
-                                  child : Text(
-                                    widget.video.snippet!.title!,
-                                    style : TextStyle(fontSize : 25, color : Colors.black, fontFamily :
-                                    'Poppins',
-                                      fontWeight :
-                                      FontWeight.w700,),
-                                    textAlign : TextAlign.center,
+                                  SizedBox(width : 8),
+                                  Flexible(
+                                    child : Text(
+                                      widget.video.snippet!.title!,
+                                      style : TextStyle(fontSize : 25, color : Colors.black, fontFamily :
+                                      'Poppins',
+                                        fontWeight :
+                                        FontWeight.w700,),
+                                      textAlign : TextAlign.center,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        margin:
-                        EdgeInsets.symmetric(horizontal : 16, vertical : 8),
-                        child : Column(
-                          crossAxisAlignment : CrossAxisAlignment.start,
-                          children:[
-                            Text('Description', style : TextStyle(color : Colors.black, fontFamily :
-                            'Poppins',
+                        Container(
+                          margin:
+                          EdgeInsets.symmetric(horizontal : 16, vertical : 8),
+                          child : Column(
+                            crossAxisAlignment : CrossAxisAlignment.start,
+                            children:[
+                              Text('Description', style : TextStyle(color : Colors.black, fontFamily :
+                              'Poppins',
+                                  fontWeight :
+                                  FontWeight.w700,
+                                  fontSize :
+                                  20),),
+                              Text(widget.video.snippet!.description!, style : TextStyle(fontSize : 15, color : Colors.blue, fontFamily :
+                              'Poppins',
                                 fontWeight :
-                                FontWeight.w700,
-                                fontSize :
-                                20),),
-                            Text(widget.video.snippet!.description!, style : TextStyle(fontSize : 15, color : Colors.blue, fontFamily :
-                            'Poppins',
-                              fontWeight :
-                              FontWeight.w200,),),
-                          ],
+                                FontWeight.w200,),),
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(height : 16),
-                      if(isupdatingBalance)
-                        SpinKitThreeInOut(color: Colors.yellow),
-                      ElevatedButton.icon(
-                        onPressed: () async {
-                          print(walletBalance);
+                        SizedBox(height : 16),
+                        if(isupdatingBalance)
+                          SpinKitThreeInOut(color: Colors.yellow),
+                        Center(
+                          child: ElevatedButton.icon(
+                            onPressed: () async {
+                              print(walletBalance);
 
-                          final user = FirebaseAuth.instance.currentUser;
-                          print(user?.uid);
-                          if (user == null) {
-                            // Navigate to LoginScreen if user is not logged in
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => LoginScreen()),
-                            );
+                              final user = FirebaseAuth.instance.currentUser;
+                              print(user?.uid);
+                              if (user == null) {
+                                // Navigate to LoginScreen if user is not logged in
+                                await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                                );
 
-                          } else {
-                            // Show a card that lets the user enter the number of votes they want to put in
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                int voteCount = 1;
-                                return StatefulBuilder(
-                                  builder: (context, setState) {
-                                    return AlertDialog(
-                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                                      title: Text("Enter Number of Votes"),
-                                      content: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          TextField(
-                                            controller: _voteCountController,
-                                            keyboardType: TextInputType.number,
-                                            decoration: InputDecoration(
-                                              labelText: 'Number of Votes',
-                                              border: OutlineInputBorder(),
-                                            ),
-                                            onChanged: (value) {
-                                              setState(() {
-                                                voteCount = int.tryParse(value) ?? 1;
-                                              });
-                                            },
+                              } else {
+                                // Show a card that lets the user enter the number of votes they want to put in
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    int voteCount = 1;
+                                    return StatefulBuilder(
+                                      builder: (context, setState) {
+                                        return AlertDialog(
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                          title: Text("Enter Number of Votes"),
+                                          content: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              TextField(
+                                                controller: _voteCountController,
+                                                keyboardType: TextInputType.number,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Number of Votes',
+                                                  border: OutlineInputBorder(),
+                                                ),
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    voteCount = int.tryParse(value) ?? 1;
+                                                  });
+                                                },
+                                              ),
+                                              SizedBox(height: 10),
+                                              Text('Price of Vote: ${voteCount * 2}'),
+                                            ],
                                           ),
-                                          SizedBox(height: 10),
-                                          Text('Price of Vote: ${voteCount * 2}'),
-                                        ],
-                                      ),
-                                      actions: [
-                                        TextButton(
-                                          child: Text("Vote"),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                            _voteForContestant( voteCount);
-                                          },
-                                        ),
-                                      ],
+                                          actions: [
+                                            TextButton(
+                                              child: Text("Vote"),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                                _voteForContestant( voteCount);
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      },
                                     );
                                   },
                                 );
-                              },
-                            );
-                          }
-                        },
-                        icon: Icon(Icons.thumb_up),
-                        label: Text(
-                          'Vote',
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w700,
-                            fontSize: 18,
+                              }
+                            },
+                            icon: Icon(Icons.thumb_up),
+                            label: Text(
+                              'Vote',
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w700,
+                                fontSize: 18,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.black,
+                              backgroundColor: Colors.yellow,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
                           ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          backgroundColor: Colors.yellow,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                        ),
-                      ),// remove the watch video button
-                    ],
-                  )),
-            )
-          ],
+                        ),// remove the watch video button
+                      ],
+                    )),
+              )
+            ],
+          ),
         ),
       ),
     );

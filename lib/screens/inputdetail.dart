@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ethiopian_idol/components/roundedbutton.dart';
+import 'package:ethiopian_idol/screens/loginandregistration.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ethiopian_idol/main.dart';
@@ -261,7 +262,7 @@ class _DetailsEntryScreenState extends State<DetailsEntryScreen> {
           });
         },
         title: Text('I agree to the terms and conditions',
-            style: TextStyle(color: Colors.black)),
+            style: TextStyle(color: themeProvider.selectedTheme=='dark'?Colors.white:Colors.black)),
         controlAffinity: ListTileControlAffinity.leading, // add this line
       ),
 
@@ -277,41 +278,76 @@ class _DetailsEntryScreenState extends State<DetailsEntryScreen> {
       Flexible(
         child: RoundedButton(
           onpressed :() async{
-            if(_formKey.currentState!.validate()){
-              if(agreedToTerms){
-                setState(() {
-                  issubmitting = true;
-                });
-                if(auditionFile !=null){
-                  if(walletBalance >=50){
-                    walletBalance -=50;
-                    await FirebaseFirestore.instance.collection('transactions').add({
-                      'uid': FirebaseAuth.instance.currentUser!.uid,
-                      'amount': '-50',
-                      'timestamp': DateTime.now(),
-                    });
-                    setState(() {
-                      issubmitting = false;
-                    });
-                    showDialog(
-                      context :context,
-                      builder :(BuildContext context){
-                        return AlertDialog(
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                          title :Text("Audition Submitted!"),
-                          content :Text("Your audition has been submitted.50 birr taken from your wallet."),
-                          actions:[
-                            TextButton(
-                              child :Text("OK"),
-                              onPressed :(){
-                                Navigator.of(context).pop();
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
+            // Check if there is a logged in user
+            final user = FirebaseAuth.instance.currentUser;
+            if (user == null) {
+              // If not, navigate to LoginScreen
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginScreen(),
+                ),
+              );
+            } else {
+              // Otherwise, proceed with the original logic
+              if(_formKey.currentState!.validate()){
+                if(agreedToTerms){
+                  setState(() {
+                    issubmitting = true;
+                  });
+                  if(auditionFile !=null){
+                    if(walletBalance >=50){
+                      walletBalance -=50;
+                      await FirebaseFirestore.instance.collection('transactions').add({
+                        'uid': user.uid,
+                        'amount': '-50',
+                        'timestamp': DateTime.now(),
+                      });
+                      setState(() {
+                        issubmitting = false;
+                      });
+                      showDialog(
+                        context :context,
+                        builder :(BuildContext context){
+                          return AlertDialog(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                            title :Text("Audition Submitted!"),
+                            content :Text("Your audition has been submitted.50 birr taken from your wallet."),
+                            actions:[
+                              TextButton(
+                                child :Text("OK"),
+                                onPressed :(){
+                                  Navigator.of(context).pop();
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }else{
+                      setState(() {
+                        issubmitting = false;
+                      });
+                      showDialog(
+                        context :context,
+                        builder :(BuildContext context){
+                          return AlertDialog(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                            title :Text("Insufficient Funds!"),
+                            content :Text("Insufficient funds please refill your wallet."),
+                            actions:[
+                              TextButton(
+                                child :Text("OK"),
+                                onPressed :(){
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }
                   }else{
                     setState(() {
                       issubmitting = false;
@@ -321,8 +357,8 @@ class _DetailsEntryScreenState extends State<DetailsEntryScreen> {
                       builder :(BuildContext context){
                         return AlertDialog(
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                          title :Text("Insufficient Funds!"),
-                          content :Text("Insufficient funds please refill your wallet."),
+                          title :Text("No File Selected!"),
+                          content :Text("Please select an audition file."),
                           actions:[
                             TextButton(
                               child :Text("OK"),
@@ -344,8 +380,8 @@ class _DetailsEntryScreenState extends State<DetailsEntryScreen> {
                     builder :(BuildContext context){
                       return AlertDialog(
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                        title :Text("No File Selected!"),
-                        content :Text("Please select an audition file."),
+                        title :Text("Terms Not Agreed!"),
+                        content :Text("Please agree to the terms and conditions."),
                         actions:[
                           TextButton(
                             child :Text("OK"),
@@ -358,34 +394,13 @@ class _DetailsEntryScreenState extends State<DetailsEntryScreen> {
                     },
                   );
                 }
-              }else{
-                setState(() {
-                  issubmitting = false;
-                });
-                showDialog(
-                  context :context,
-                  builder :(BuildContext context){
-                    return AlertDialog(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                      title :Text("Terms Not Agreed!"),
-                      content :Text("Please agree to the terms and conditions."),
-                      actions:[
-                        TextButton(
-                          child :Text("OK"),
-                          onPressed :(){
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                );
               }
             }
           },
           color: agreedToTerms? Colors.blue: Colors.blueGrey,
           title: 'Submit',
         ),
+
       ),
     ],
     ),

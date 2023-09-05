@@ -52,6 +52,7 @@ class _ChapaWalletFillerScreenState extends State<ChapaWalletFillerScreen> {
                       .collection('users').doc(uid).get();
                   String firstName = snapshot['firstName'];
                   String lastName = snapshot['lastName'];
+                  String phone = snapshot['phoneNumber'];
 
 
                 // Generate a random txRef
@@ -108,9 +109,9 @@ class _ChapaWalletFillerScreenState extends State<ChapaWalletFillerScreen> {
                     amount: _amountController.text,
                     currency: 'ETB',
                     txRef: storedTxRef,
-                    firstName: 'firstName',
-                    lastName: 'lastName',
-                    phoneNumber: '0912345678',
+                    firstName: firstName,
+                    lastName: lastName,
+                    phoneNumber: phone,
                   ); // start Payment Code
                 } on ChapaException catch (e) {
                   setState(() {
