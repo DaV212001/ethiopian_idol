@@ -47,9 +47,9 @@ class FooterCustom extends StatelessWidget {
               Icon(Icons.phone),
               GestureDetector(
                 onTap: () {
-                  launch('tel:6494');
+                  launch('tel:6949');
                 },
-                child: Text(': 6494'),
+                child: Text(': 6949'),
               ),
             ],
           )

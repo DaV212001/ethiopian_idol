@@ -8,6 +8,13 @@ import 'package:ethiopian_idol/main.dart';
 import 'package:provider/provider.dart';
 final List<Map<String, dynamic>> people = [
   {
+    'name': 'Ibrahim Daniel Tilahun',
+    'image':'https://img.youtube.com/vi/LZMteOAUJDA/maxresdefault.jpg',
+    'video' : 'LZMteOAUJDA',
+    'description' : 'Ibrahim Daniel is the grandson of the famed and renowned late Ethiopian singer Tilahun Gessesse.',
+    'votes' : 0
+  },
+  {
     'name': 'Getachew Gerem',
     'image': 'https://img.youtube.com/vi/8QeWXl4_2Oc/maxresdefault.jpg',
     'video': '8QeWXl4_2Oc',
@@ -22,6 +29,13 @@ final List<Map<String, dynamic>> people = [
     'description':
     'Aseged Gebeyew is a dynamic dancer and performer with an innate ability to captivate audiences through movement. From traditional Ethiopian dance to modern contemporary styles, he has mastered a wide range of techniques that he seamlessly blends in his performances. A true storyteller, Aseged uses his body as a canvas to convey emotions and narratives. His dedication to his craft and passion for pushing boundaries have earned him recognition on various stages and platforms.',
     'votes': 0
+  },
+  {
+    'name': 'Ibrahim Daniel Tilahun',
+    'image':'https://img.youtube.com/vi/LZMteOAUJDA/maxresdefault.jpg',
+    'video' : 'LZMteOAUJDA',
+    'description' : 'Ibrahim Daniel is the grandson of the famed and renowned late Ethiopian singer Tilahun Gessesse.',
+    'votes' : 0
   },
   {
     'name': 'Melat Abraham',
@@ -40,6 +54,13 @@ final List<Map<String, dynamic>> people = [
     'votes': 0
   },
   {
+    'name': 'Ibrahim Daniel Tilahun',
+    'image':'https://img.youtube.com/vi/LZMteOAUJDA/maxresdefault.jpg',
+    'video' : 'LZMteOAUJDA',
+    'description' : 'Ibrahim Daniel is the grandson of the famed and renowned late Ethiopian singer Tilahun Gessesse.',
+    'votes' : 0
+  },
+  {
     'name': 'Beza Gashaw',
     'image': 'https://img.youtube.com/vi/IbLCh9Oiqw0/maxresdefault.jpg',
     'video': 'IbLCh9Oiqw0',
@@ -56,6 +77,13 @@ final List<Map<String, dynamic>> people = [
     'votes': 0
   },
   {
+    'name': 'Ibrahim Daniel Tilahun',
+    'image':'https://img.youtube.com/vi/LZMteOAUJDA/maxresdefault.jpg',
+    'video' : 'LZMteOAUJDA',
+    'description' : 'Ibrahim Daniel is the grandson of the famed and renowned late Ethiopian singer Tilahun Gessesse.',
+    'votes' : 0
+  },
+  {
     'name': 'Genet Abeshu',
     'image': 'https://img.youtube.com/vi/HnDkeRlKr6Q/maxresdefault.jpg',
     'video': 'HnDkeRlKr6Q',
@@ -64,12 +92,26 @@ final List<Map<String, dynamic>> people = [
     'votes': 0
   },
   {
+    'name': 'Ibrahim Daniel Tilahun',
+    'image':'https://img.youtube.com/vi/LZMteOAUJDA/maxresdefault.jpg',
+    'video' : 'LZMteOAUJDA',
+    'description' : 'Ibrahim Daniel is the grandson of the famed and renowned late Ethiopian singer Tilahun Gessesse.',
+    'votes' : 0
+  },
+  {
     'name': 'Melkamu Arega',
     'image': 'https://img.youtube.com/vi/SxEPcNDCmKI/maxresdefault.jpg',
     'video': 'BD7BEURsN-k',
     'description':
     'Melkamu Arega is a gifted visual artist who uses his work to convey powerful messages. His paintings and illustrations often explore themes of identity, culture, and social justice. Melkamu’s distinctive style blends realism with abstract elements, resulting in thought-provoking and visually striking pieces. Through his art, he aims to spark conversations and challenge perceptions. Melkamu believes that art has the ability to inspire change and bridge gaps between communities.',
     'votes': 0
+  },
+  {
+    'name': 'Ibrahim Daniel Tilahun',
+    'image':'https://img.youtube.com/vi/LZMteOAUJDA/maxresdefault.jpg',
+    'video' : 'LZMteOAUJDA',
+    'description' : 'Ibrahim Daniel is the grandson of the famed and renowned late Ethiopian singer Tilahun Gessesse.',
+    'votes' : 0
   },
   {
     'name': 'Estifanos Mamo',
@@ -88,6 +130,13 @@ final List<Map<String, dynamic>> people = [
     'votes': 0
   },
   {
+    'name': 'Ibrahim Daniel Tilahun',
+    'image':'https://img.youtube.com/vi/LZMteOAUJDA/maxresdefault.jpg',
+    'video' : 'LZMteOAUJDA',
+    'description' : 'Ibrahim Daniel is the grandson of the famed and renowned late Ethiopian singer Tilahun Gessesse.',
+    'votes' : 0
+  },
+  {
     'name': 'Eyob Abera',
     'image': 'https://img.youtube.com/vi/-POQzuByUU4/maxresdefault.jpg',
     'video': '-POQzuByUU4',
@@ -102,6 +151,13 @@ final List<Map<String, dynamic>> people = [
     'description':
     'Dagnachew Fekadu is a charismatic stand-up comedian who uses humor to address social issues and everyday life. With a quick wit and relatable anecdotes, he has the ability to make audiences laugh while also sparking conversations. Dagnachew’s performances often touch on topics such as cultural differences, relationships, and the human experience. His unique perspective and energetic delivery make him a favorite among comedy enthusiasts.',
     'votes': 0
+  },
+  {
+    'name': 'Ibrahim Daniel Tilahun',
+    'image':'https://img.youtube.com/vi/LZMteOAUJDA/maxresdefault.jpg',
+    'video' : 'LZMteOAUJDA',
+    'description' : 'Ibrahim Daniel is the grandson of the famed and renowned late Ethiopian singer Tilahun Gessesse.',
+    'votes' : 0
   },
   // ... Add descriptions for other contestants
 ];

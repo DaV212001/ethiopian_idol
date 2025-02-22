@@ -13,6 +13,13 @@ import 'package:ethiopian_idol/components/footer.dart';
 
 final List<Map<String, dynamic>> people = [
   {
+    'name': 'Ibrahim Daniel Tilahun',
+    'image':'https://img.youtube.com/vi/LZMteOAUJDA/maxresdefault.jpg',
+    'video' : 'LZMteOAUJDA',
+    'description' : 'Ibrahim Daniel is the grandson of the famed and renowned late Ethiopian singer Tilahun Gessesse.',
+    'votes' : 0
+  },
+  {
     'name': 'Getachew Gerem',
     'image': 'https://img.youtube.com/vi/8QeWXl4_2Oc/maxresdefault.jpg',
     'video': '8QeWXl4_2Oc',
@@ -20,6 +27,14 @@ final List<Map<String, dynamic>> people = [
     'Getachew Gerem is a multi-talented artist whose journey in the world of music started at a young age. Born and raised in Ethiopia, he was exposed to diverse musical influences that shaped his unique sound. Getachew is not only a remarkable singer but also a gifted songwriter and composer. His music often explores themes of love, identity, and societal issues. With a voice that resonates with emotion, he has captured the hearts of fans both locally and internationally.',
     'votes': 0
   },
+  {
+    'name': 'Ibrahim Daniel Tilahun',
+    'image':'https://img.youtube.com/vi/LZMteOAUJDA/maxresdefault.jpg',
+    'video' : 'LZMteOAUJDA',
+    'description' : 'Ibrahim Daniel is the grandson of the famed and renowned late Ethiopian singer Tilahun Gessesse.',
+    'votes' : 0
+  },
+
   {
     'name': 'Aseged Gebeyew',
     'image': 'https://img.youtube.com/vi/YxSFhM1O71Y/maxresdefault.jpg',
@@ -29,12 +44,26 @@ final List<Map<String, dynamic>> people = [
     'votes': 0
   },
   {
+    'name': 'Ibrahim Daniel Tilahun',
+    'image':'https://img.youtube.com/vi/LZMteOAUJDA/maxresdefault.jpg',
+    'video' : 'LZMteOAUJDA',
+    'description' : 'Ibrahim Daniel is the grandson of the famed and renowned late Ethiopian singer Tilahun Gessesse.',
+    'votes' : 0
+  },
+  {
     'name': 'Melat Abraham',
     'image': 'https://img.youtube.com/vi/lRVnnqlwcCQ/maxresdefault.jpg',
     'video': 'erRYk7FH0-8',
     'description':
     'Melat Abraham is an aspiring singer-songwriter who has been making waves with her soulful voice and thought-provoking lyrics. Her music often delves into introspective themes and personal experiences, creating a connection with listeners. Melat’s journey in music began when she started performing at local venues, and she has since evolved into an artist who uses her platform to inspire others. With a blend of genres and a passion for storytelling, she is carving her own path in the industry.',
     'votes': 0
+  },
+  {
+    'name': 'Ibrahim Daniel Tilahun',
+    'image':'https://img.youtube.com/vi/LZMteOAUJDA/maxresdefault.jpg',
+    'video' : 'LZMteOAUJDA',
+    'description' : 'Ibrahim Daniel is the grandson of the famed and renowned late Ethiopian singer Tilahun Gessesse.',
+    'votes' : 0
   },
   {
     'name': 'Nafyad Berhanu',
@@ -53,12 +82,26 @@ final List<Map<String, dynamic>> people = [
     'votes': 0
   },
   {
+    'name': 'Ibrahim Daniel Tilahun',
+    'image':'https://img.youtube.com/vi/LZMteOAUJDA/maxresdefault.jpg',
+    'video' : 'LZMteOAUJDA',
+    'description' : 'Ibrahim Daniel is the grandson of the famed and renowned late Ethiopian singer Tilahun Gessesse.',
+    'votes' : 0
+  },
+  {
     'name': 'Efphrem Getachew',
     'image': 'https://img.youtube.com/vi/8Z6YPBRuqkM/maxresdefault.jpg',
     'video': 'xTFHifXa_cQ',
     'description':
     'Efphrem Getachew is a rising star in the world of entertainment. His magnetic stage presence and versatile acting skills have earned him roles in both film and theater. Efphrem’s commitment to storytelling and character development is evident in every performance. With a passion for the arts, he aims to address important social issues through his work. Efphrem believes that art has the power to provoke thought, challenge norms, and bring about positive change.',
     'votes': 0
+  },
+  {
+    'name': 'Ibrahim Daniel Tilahun',
+    'image':'https://img.youtube.com/vi/LZMteOAUJDA/maxresdefault.jpg',
+    'video' : 'LZMteOAUJDA',
+    'description' : 'Ibrahim Daniel is the grandson of the famed and renowned late Ethiopian singer Tilahun Gessesse.',
+    'votes' : 0
   },
   {
     'name': 'Genet Abeshu',
@@ -77,12 +120,26 @@ final List<Map<String, dynamic>> people = [
     'votes': 0
   },
   {
+    'name': 'Ibrahim Daniel Tilahun',
+    'image':'https://img.youtube.com/vi/LZMteOAUJDA/maxresdefault.jpg',
+    'video' : 'LZMteOAUJDA',
+    'description' : 'Ibrahim Daniel is the grandson of the famed and renowned late Ethiopian singer Tilahun Gessesse.',
+    'votes' : 0
+  },
+  {
     'name': 'Estifanos Mamo',
     'image': 'https://img.youtube.com/vi/mcjdopGql_M/maxresdefault.jpg',
     'video': 'mcjdopGql_M',
     'description':
     'Estifanos Mamo is an emerging poet who uses words to create vivid and emotional landscapes. His poetry touches on a wide range of topics, from personal experiences to societal issues. Estifanos’ performances are characterized by his evocative delivery and ability to connect with his audience. Through his words, he aims to inspire introspection and empathy. Estifanos believes that poetry has the power to convey complex emotions and foster a deeper understanding of the human experience.',
     'votes': 0
+  },
+  {
+    'name': 'Ibrahim Daniel Tilahun',
+    'image':'https://img.youtube.com/vi/LZMteOAUJDA/maxresdefault.jpg',
+    'video' : 'LZMteOAUJDA',
+    'description' : 'Ibrahim Daniel is the grandson of the famed and renowned late Ethiopian singer Tilahun Gessesse.',
+    'votes' : 0
   },
   {
     'name': 'Hana Melese',
@@ -99,6 +156,13 @@ final List<Map<String, dynamic>> people = [
     'description':
     'Eyob Abera is a skilled magician who mesmerizes audiences with his mind-bending tricks and illusions. From close-up magic to grand stage performances, he has mastered a wide range of techniques. Eyob’s performances are not only visually stunning but also thought-provoking, often challenging perceptions of reality. With a passion for mystery and a dedication to his craft, he continues to innovate and push the boundaries of magic.',
     'votes': 0
+  },
+  {
+    'name': 'Ibrahim Daniel Tilahun',
+    'image':'https://img.youtube.com/vi/LZMteOAUJDA/maxresdefault.jpg',
+    'video' : 'LZMteOAUJDA',
+    'description' : 'Ibrahim Daniel is the grandson of the famed and renowned late Ethiopian singer Tilahun Gessesse.',
+    'votes' : 0
   },
   {
     'name': 'Dagnachew Fekadu',

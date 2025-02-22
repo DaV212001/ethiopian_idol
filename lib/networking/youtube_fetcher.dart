@@ -28,10 +28,20 @@ Future<List<PlaylistItem>> fetchVideos() async {
   // Use the authenticated HTTP client to make authorized API calls
   var youtube = YouTubeApi(client);
   var channel_id = 'UCp9pS23Vw1n8WpcpZBDJNmA'; // EBC Entertainment channel ID
+
+  // Fetch the specific video using its ID
+  var specificVideoId = 'LZMteOAUJDA';
+  var specificVideo = await youtube.videos.list(
+    ['snippet'],
+    id: [specificVideoId],
+  );
+
+  // Fetch all videos from the channel
   var response = await youtube.playlists.list(
     ['snippet'],
     channelId: channel_id,
   );
+
   var playlist_id;
   for (var item in response.items ?? []) {
     if (item.snippet?.title == 'የኢትዮጵያ አይዶል Ethiopian Idol') {
@@ -39,8 +49,10 @@ Future<List<PlaylistItem>> fetchVideos() async {
       break;
     }
   }
+
   var videos = <PlaylistItem>[];
   var page_token;
+
   while (true) {
     var response = await youtube.playlistItems.list(
       ['snippet'],
@@ -48,10 +60,32 @@ Future<List<PlaylistItem>> fetchVideos() async {
       maxResults: 10,
       pageToken: page_token,
     );
+
     videos.addAll(response.items ?? []);
     page_token = response.nextPageToken;
+
     if (page_token == null) break;
   }
-  videos = videos.sublist(10);
+
+  // Remove the specific video from the list if it exists
+  videos.removeWhere((video) => video.snippet?.resourceId?.videoId == specificVideoId);
+
+  // Insert the specific video at regular intervals in the list
+  // Insert the specific video at regular intervals in the list
+  if (specificVideo.items != null && specificVideo.items!.isNotEmpty) {
+    var interval = 2; // Change this to control the frequency of the specific video
+    for (var i = interval; i < videos.length; i += interval + 1) {
+      var video = specificVideo.items![0];
+      var playlistItem = PlaylistItem()
+        ..snippet = (PlaylistItemSnippet()
+          ..title = video.snippet?.title
+          ..description = video.snippet?.description
+          ..thumbnails = video.snippet?.thumbnails
+          ..resourceId = (ResourceId()..videoId = video.id));
+      videos.insert(i, playlistItem);
+    }
+  }
+
+
   return videos;
 }

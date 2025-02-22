@@ -105,6 +105,7 @@ class _ChapaWalletFillerScreenState extends State<ChapaWalletFillerScreen> {
                         ispaying = false;
                       });
                       print('PAYMENT FAILURE');// Handle error
+                      print(errorMsg);
                     },
                     amount: _amountController.text,
                     currency: 'ETB',

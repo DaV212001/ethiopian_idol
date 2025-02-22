@@ -1,15 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ethiopian_idol/components/roundedbutton.dart';
+import 'package:ethiopian_idol/main.dart';
 import 'package:ethiopian_idol/screens/compete.dart';
 import 'package:ethiopian_idol/screens/homepage.dart';
 import 'package:ethiopian_idol/screens/inputdetail.dart';
 import 'package:ethiopian_idol/screens/profilescreen.dart';
 import 'package:ethiopian_idol/screens/voting.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ethiopian_idol/main.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ethiopian_idol/components/roundedbutton.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -207,24 +207,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool isContestant = false;
   bool agreedToTerms = false;
 
-  String? _selectedCategory= 'Singing';
+  String? _selectedCategory = 'Singing';
   @override
   Widget build(BuildContext context) {
-
     final categories = [
-       'Singing',
+      'Singing',
       'Dancing',
       'Comedy',
-     'Magic',
+      'Magic',
       'Acting',
-     'Poetry',
+      'Poetry',
       'Instruments',
-     'Impersonation',
+      'Impersonation',
     ];
-
-
-
-
 
     const kTextFeildStyle = InputDecoration(
       hintText: 'Enter your password',
@@ -335,45 +330,51 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   if (isContestant)
                     Column(
                       children: [
-                        SizedBox(height: 8,),
-
-                    Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                        width: 190,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(20),
+                        SizedBox(
+                          height: 8,
                         ),
-                        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            DropdownButton<String>(
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            width: 190,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey),
                               borderRadius: BorderRadius.circular(20),
-                              style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w700, color: Colors.black),
-                              value: _selectedCategory,
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  _selectedCategory = newValue!;
-                                });
-                              },
-                              items: categories.map<DropdownMenuItem<String>>((category) {
-                                return DropdownMenuItem<String>(
-                                  value: category,
-                                  child: Text(category),
-                                );
-                              }).toList(),
-                              underline: Container(),
-                                 ),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 4),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                DropdownButton<String>(
+                                  borderRadius: BorderRadius.circular(20),
+                                  style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.black),
+                                  value: _selectedCategory,
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      _selectedCategory = newValue!;
+                                    });
+                                  },
+                                  items: categories
+                                      .map<DropdownMenuItem<String>>(
+                                          (category) {
+                                    return DropdownMenuItem<String>(
+                                      value: category,
+                                      child: Text(category),
+                                    );
+                                  }).toList(),
+                                  underline: Container(),
+                                ),
                               ],
                             ),
                           ),
                         ),
                       ],
                     ),
-
                   SizedBox(height: 8),
                   TextFormField(
                     textAlign: TextAlign.center,
@@ -406,11 +407,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     keyboardType: TextInputType.emailAddress,
                     controller: _emailController,
                     decoration:
-                    kTextFeildStyle.copyWith(hintText: 'Enter your email'),
+                        kTextFeildStyle.copyWith(hintText: 'Enter your email'),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your email';
-                      }else if(!value.contains(RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$'))){ // use a regular expression to check if the email is valid
+                      } else if (!value.contains(RegExp(
+                          r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$'))) {
+                        // use a regular expression to check if the email is valid
                         return 'Please enter a valid email';
                       }
                       return null;
@@ -426,7 +429,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your password';
-                      } else if(value.length<6){
+                      } else if (value.length < 6) {
                         return 'Password should be atleast 6 characters';
                       }
                       return null;
@@ -442,13 +445,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your phone number';
-                      }else if(!value.contains(RegExp(r'^[0-9]{10}$'))){ // use a regular expression to check if the phone number is valid
+                      } else if (!value.contains(RegExp(r'^[0-9]{10}$'))) {
                         return 'Please enter a valid phone number';
                       }
                       return null;
                     },
                   ),
-
                   SizedBox(height: 24),
                   Flexible(
                     child: CheckboxListTile(
@@ -463,10 +465,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       title: Text('I agree to the terms and conditions',
                           style: TextStyle(color: Colors.black)),
-                      controlAffinity: ListTileControlAffinity.leading, // add this line
+                      controlAffinity:
+                          ListTileControlAffinity.leading, // add this line
                     ),
                   ),
-
                   Flexible(
                     child: TextButton(
                       onPressed: () {
@@ -501,8 +503,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   .set({
                                 'firstName': _firstNameController.text,
                                 'lastName': _lastNameController.text,
-                                'status': isContestant ? 'Contestant' : 'Audience',
-                                  'phoneNumber': _phoneNumberController.text,
+                                'status':
+                                    isContestant ? 'Contestant' : 'Audience',
+                                'phoneNumber': _phoneNumberController.text,
                               });
 
                               // Call onWillPop manually
@@ -541,7 +544,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           }
                         }
                       },
-                      color: agreedToTerms? Colors.lightBlueAccent: Colors.blueGrey,
+                      color: agreedToTerms
+                          ? Colors.lightBlueAccent
+                          : Colors.blueGrey,
                       title: 'Register',
                     ),
                   )
